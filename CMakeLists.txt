@@ -23,10 +23,16 @@ file(
 	GLOB_RECURSE # recursive
 	SRC # variable to store the source files and headers
 	CONFIGURE_DEPENDS # make a dependency
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/*.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
+	"src/*.hpp"
+	"src/*.cpp"
 )
 
 add_executable(packet-sniffer ${SRC})
+
+# Adding Libraries
+add_subdirectory("libs/libpcap")
+
+target_link_libraries(packet-sniffer PRIVATE pcap)
 
 # Link compile commands in root if it's not visual studio
 # for lsp in vscode and neovim
