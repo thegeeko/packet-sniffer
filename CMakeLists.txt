@@ -31,8 +31,10 @@ add_executable(packet-sniffer ${SRC})
 
 # Adding Libraries
 add_subdirectory("libs/libpcap")
+add_subdirectory("libs/spdlog")
 
 target_link_libraries(packet-sniffer PRIVATE pcap)
+target_link_libraries(packet-sniffer PRIVATE spdlog::spdlog)
 
 # Link compile commands in root if it's not visual studio
 # for lsp in vscode and neovim
